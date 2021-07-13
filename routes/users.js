@@ -20,4 +20,10 @@ router.get('/', (request, response) => {
     response.send(users)
 })
 
+router.post('/', (request, response) => {
+    const user = request.body
+    users.push(user)
+    response.send(`User with the name ${user.firstName} added to the database!`)
+})
+
 export default router
