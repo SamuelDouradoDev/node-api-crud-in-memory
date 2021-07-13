@@ -1,13 +1,16 @@
 import express, { response } from 'express'
 import bodyParser from 'body-parser'
+import usersRoutes from './routes/users.js'
 
 const app = express()
 const PORT = 5000
 
 app.use(bodyParser.json())
 
+app.use('/users', usersRoutes)
+
+// Creating new route. 
 app.get('/', (request, response) => {
-    console.log('[Teste]')
     response.send('Hello from HomePage!')
 })
 
