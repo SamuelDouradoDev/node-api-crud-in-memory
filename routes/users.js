@@ -41,4 +41,19 @@ router.delete('/:id', (request, response) => {
     response.send(`User id: ${request.params.id} was deleted`)
 })
 
+router.patch('/:id', (request, response) => {
+    console.log(`User id: ${request.params.id} was updated`)
+    const user = users.find(u => u.id === request.params.id)
+
+    // Update all the key, values that was sent in body. 
+    if(user) {
+        user.firstName = request.body.firstName ? request.body.firstName : user.firstName
+        user.lastName = request.body.lastName ? request.body.lastName : user.lastName
+        user.age = request.body.age ? request.body.age : user.age;
+    }
+
+    
+    response.send(`User id: ${request.params.id} was updated`)
+})
+
 export default router
