@@ -3,7 +3,7 @@ import { v4 as uuidv4} from 'uuid'
 
 const router = express.Router()
 
-const users = [
+let users = [
     {
         id: uuidv4(),
         firstName: "John",
@@ -33,6 +33,12 @@ router.get('/:id', (request, response) => {
     console.log(`User id is ${request.params.id}`)
     const user = users.find(u => u.id === request.params.id)
     response.send(user)
+})
+
+router.delete('/:id', (request, response) => {
+    console.log(`User id: ${request.params.id} was deleted`)
+    users = users.filter(u => u.id !== request.params.id)
+    response.send(`User id: ${request.params.id} was deleted`)
 })
 
 export default router
